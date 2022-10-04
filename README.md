@@ -1,0 +1,2 @@
+# docs
+Dokumentacja projektu
