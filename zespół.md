@@ -5,7 +5,6 @@
 ## Backend
 
 ## Protokół
-Mizoz
 
 ## Dazy Banych
 
