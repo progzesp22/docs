@@ -38,7 +38,7 @@
 
 # Comms/Proto
 Mamy takie endpointy:
-1. GET /tasks/list
+1. GET /tasks - get all tasks
 Example response:
 ```JSON
 {
@@ -50,13 +50,13 @@ Example response:
 }
 ```
 
-2. POST /answears/submit
+2. POST /answers - dodaj answer
 Example payload:
 ```JSON
 {"task_id": 1, "username": "misos", "response":"tutaj tekst, ale w ogólności byte array np. - na razie styka text"}
 ```
 
-3. POST /tasks/create
+3. POST /tasks - dodaj task
 Example payload:
 ```JSON
 {"name": "Zbierz szyszunie", "description": "Dobre szyszunie", "type":"text"}
@@ -67,13 +67,13 @@ returns:
 {"task_id":123}
 ```
 
-4. POST /tasks/edit
+4. PUT /tasks/{id} - edytujemy istniejący task
 Example payload:
 ```JSON
 {"task_id": 1, "name": "Zbierz szyszunie", "description": "Dobre szyszunie", "type":"text"}
 ```
 
-5. GET /answears/list_unchecked
+5. GET /answers/unchecked - get all unchecked answers
 Example response:
 ```JSON
 {
@@ -85,7 +85,7 @@ Example response:
 }
 ```
 
-6. POST /answears/approve
+6. PATCH /answers/{id} - zmieniamy pojedyńczy parametr answer, czyli status approved 
 Example payload 1:
 ```JSON
 {"answear_id": 2138420, "approve":true}
