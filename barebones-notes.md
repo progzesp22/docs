@@ -99,5 +99,3 @@ Example payload 2:
 # Backend
 Implementacja serwera realizującego zapytania GET/POST z Comms/Proto -> ma przechowywać dane przynajmniej do restartu (w RAMie). Jak jesteście ambitni, to dogadajcie się z zespołem DB odnośnie zapisu. Jak mamy requesta POST /answears/approve to zapisujemy, które answeary dostały odpowiedzi, a które nie i potem nie wysyłamy ich w GET /answears/list_unchecked.
 
-# Grafika
-Jakieś szkice węglem byłyby miło widziane.
