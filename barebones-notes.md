@@ -78,9 +78,9 @@ Example response:
 ```JSON
 {
     "answears": [
-        {"task_id": 1, "answear_id": 2138420, "username": "misos", "response":"tutaj tekst, ale w ogólności byte array np. - na razie styka text"},
-        {"task_id": 2, "answear_id": 13231232, "username": "burak", "response":"Better nerf irelia"},
-        {"task_id": 3, "answear_id": 13893212, "username": "bbb", "response":"I'm ummm"}
+        {"task_id": 1, "answer_id": 2138420, "username": "misos", "response":"tutaj tekst, ale w ogólności byte array np. - na razie styka text"},
+        {"task_id": 2, "answer_id": 13231232, "username": "burak", "response":"Better nerf irelia"},
+        {"task_id": 3, "answer_id": 13893212, "username": "bbb", "response":"I'm ummm"}
     ]
 }
 ```
@@ -88,12 +88,12 @@ Example response:
 6. PATCH /answers/{id} - zmieniamy pojedyńczy parametr answer, czyli status approved 
 Example payload 1:
 ```JSON
-{"answear_id": 2138420, "approve":true}
+{"answer_id": 2138420, "approve":true}
 ```
 
 Example payload 2:
 ```JSON
-{"answear_id": 13231232, "approve":false}
+{"answer_id": 13231232, "approve":false}
 ```
 
 # Backend
