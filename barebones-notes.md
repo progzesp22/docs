@@ -41,36 +41,61 @@ Mamy takie endpointy:
 1. GET /tasks - get all tasks
 Example response:
 ```JSON
-{
-    "tasks": [
-        {"task_id": 1, "name": "Zbierz szyszunie", "description": "Dobre szyszunie", "type":"text"},
-        {"task_id": 2, "name": "Zagraj URFa", "description": "Ligusia", "type":"text"},
-        {"task_id": 4, "name": "Kup bananka", "description": "Przynieś rachunek i CCV do Guresza", "type":"text"}
-        ]
-}
+[
+    {
+        "id": 2,
+        "name": "Example Task",
+        "description": "Example description",
+        "taskType": PHOTO,
+        "gameId": 1
+    },
+    {
+        "id": 4,
+        "name": "Example Task 2 ",
+        "description": "Example description 2 ",
+        "taskType": QR_CODE,
+        "gameId": 1
+    }
+]
 ```
 
 2. POST /answers - dodaj answer
 Example payload:
 ```JSON
-{"task_id": 1, "username": "misos", "response":"tutaj tekst, ale w ogólności byte array np. - na razie styka text"}
+{"taskId": 1, "userId": 1, "response":"tutaj tekst, ale w ogólności byte array np. - na razie styka text"}
 ```
 
 3. POST /tasks - dodaj task
 Example payload:
 ```JSON
-{"name": "Zbierz szyszunie", "description": "Dobre szyszunie", "type":"text"}
+{
+    "name": "Example Task 2 ",
+    "description": "Example description 2 ",
+    "gameId" : 1,
+    "taskType": "PHOTO"
+}
 ```
 
 returns:
 ```JSON
-{"task_id":123}
+{
+    "id": 5,
+    "name": "Example Task 2 ",
+    "description": "Example description 2 ",
+    "taskType": "PHOTO",
+    "gameId": 1
+}
 ```
 
 4. PUT /tasks/{id} - edytujemy istniejący task
 Example payload:
 ```JSON
-{"task_id": 1, "name": "Zbierz szyszunie", "description": "Dobre szyszunie", "type":"text"}
+{
+    "name": "Example Task 2 ",
+    "description": "Example description 2 ",
+    "gameId" : 1,
+    "taskType": "PHOTO"
+}
 ```
 
 5. GET /answers/unchecked - get all unchecked answers
@@ -78,9 +103,9 @@ Example response:
 ```JSON
 {
     "answears": [
-        {"task_id": 1, "answer_id": 2138420, "username": "misos", "response":"tutaj tekst, ale w ogólności byte array np. - na razie styka text"},
-        {"task_id": 2, "answer_id": 13231232, "username": "burak", "response":"Better nerf irelia"},
-        {"task_id": 3, "answer_id": 13893212, "username": "bbb", "response":"I'm ummm"}
+        {"taskId": 1, "answerId": 2138420, "userId": 1, "response":"tutaj tekst, ale w ogólności byte array np. - na razie styka text"},
+        {"taskId": 2, "answerId": 13231232, "userId": 2, "response":"Better nerf irelia"},
+        {"taskId": 3, "answerId": 13893212, "userId": 3, "response":"I'm ummm"}
     ]
 }
 ```
@@ -88,12 +113,12 @@ Example response:
 6. PATCH /answers/{id} - zmieniamy pojedyńczy parametr answer, czyli status approved 
 Example payload 1:
 ```JSON
-{"answer_id": 2138420, "approve":true}
+{ "approve":true}
 ```
 
 Example payload 2:
 ```JSON
-{"answer_id": 13231232, "approve":false}
+{ "approve":false}
 ```
 
 # Backend
