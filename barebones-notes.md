@@ -46,14 +46,14 @@ Example response:
         "id": 2,
         "name": "Example Task",
         "description": "Example description",
-        "taskType": PHOTO,
+        "taskType": "PHOTO",
         "gameId": 1
     },
     {
         "id": 4,
         "name": "Example Task 2 ",
         "description": "Example description 2 ",
-        "taskType": QR_CODE,
+        "taskType": "QR_CODE",
         "gameId": 1
     }
 ]
