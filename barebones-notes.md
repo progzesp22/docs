@@ -102,7 +102,7 @@ Example payload:
 Example response:
 ```JSON
 {
-    "answears": [
+    "answers": [
         {"taskId": 1, "answerId": 2138420, "userId": 1, "response":"tutaj tekst, ale w ogólności byte array np. - na razie styka text"},
         {"taskId": 2, "answerId": 13231232, "userId": 2, "response":"Better nerf irelia"},
         {"taskId": 3, "answerId": 13893212, "userId": 3, "response":"I'm ummm"}
@@ -122,5 +122,5 @@ Example payload 2:
 ```
 
 # Backend
-Implementacja serwera realizującego zapytania GET/POST z Comms/Proto -> ma przechowywać dane przynajmniej do restartu (w RAMie). Jak jesteście ambitni, to dogadajcie się z zespołem DB odnośnie zapisu. Jak mamy requesta POST /answears/approve to zapisujemy, które answeary dostały odpowiedzi, a które nie i potem nie wysyłamy ich w GET /answears/list_unchecked.
+Implementacja serwera realizującego zapytania GET/POST z Comms/Proto -> ma przechowywać dane przynajmniej do restartu (w RAMie). Jak jesteście ambitni, to dogadajcie się z zespołem DB odnośnie zapisu. Jak mamy requesta POST /answers/approve to zapisujemy, które answery dostały odpowiedzi, a które nie i potem nie wysyłamy ich w GET /answers/list_unchecked.
 
