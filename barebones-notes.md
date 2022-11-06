@@ -113,12 +113,12 @@ Example response:
 6. PATCH /answers/{id} - zmieniamy pojedyńczy parametr answer, czyli status approved 
 Example payload 1:
 ```JSON
-{ "approve":true}
+{ "approved":true}
 ```
 
 Example payload 2:
 ```JSON
-{ "approve":false}
+{ "approved":false}
 ```
 
 # Backend
