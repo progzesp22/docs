@@ -110,7 +110,20 @@ Example response:
 }
 ```
 
-6. PATCH /answers/{id} - zmieniamy parametry answer, czyli status approved i checked 
+6. GET /answers/ - get all answers
+Example response:
+```JSON
+{
+    "answers": [
+        {"taskId": 1, "answerId": 2138420, "userId": 1, "response":"tutaj tekst, ale w ogólności byte array np. - na razie styka text", "approved": false, "checked": false},
+        {"taskId": 2, "answerId": 13231232, "userId": 2, "response":"Better nerf irelia", "approved": false, "checked": false},
+        {"taskId": 3, "answerId": 13893212, "userId": 3, "response":"I'm ummm", "approved": false, "checked": false}
+    ]
+}
+```
+
+
+7. PATCH /answers/{id} - zmieniamy parametry answer, czyli status approved i checked 
 Example payload 1:
 ```JSON
 { "approved":true,
