@@ -1,4 +1,4 @@
-# Wersja protokołu: 1.0.1-CANDIDATE (09-11-2022)
+# Wersja protokołu: 1.0.1 (09-11-2022)
 
 Założenia:
 - Wszystkie id są globalnie unikalne.
@@ -6,6 +6,29 @@ Założenia:
 - Dla odpowiedzi tasków typu tekst nakładamy limit 500 znaków.
 - Dla tasków AUDIO i PHOTOT robimy weryfikacje formatu odebranych danych od użytkownika.
 - WAŻNA ZMIANA: Z tasków wysyłanych przy listowaniu usuwamy pole response - bo obrazki za dużo by zajmowały.
+
+    POST /user/login - loguje użytkownika o danym loginie i haśle i zwraca mu session token
+Przykład:
+```JSON
+[
+    {
+        "login": "misos",
+        "hasło": "krowa101"
+    }
+]
+```
+
+Odpowiedź:
+```JSON
+[
+    {
+        "seesionToken": "abcdefghjijfhrsnfnrnsfwnjfnjeffwfewfw",
+        "validUntil": "1997-07-16T19:20:30.45+01:00"
+    }
+]
+```
+[WIP] Oczekujemy propozycji od backendu na sposób tworzenia sessionTokenów - ponoć spring ma libke. Dodatkowo stwórzcie kilka fake-owych użytkowników i default haseł - żeby na razie nie bawić się z register.
+
 
     GET /tasks?gameId=1 - zwraca listę wszystkich tasków dla gry o id 1
 Przykład:
