@@ -78,7 +78,7 @@ Przykład:
     }
 ]
 ```
-type: TEXT, PHOTO, QR_CODE, NAV_POS, AUDIO, MULTI
+type: TEXT, PHOTO, QR_CODE, NAV_POS, AUDIO, MULTI \
 W przypadku braku gameId response/innego błędu: 400 Bad Request.
 
     POST /answer - dodaj odpowiedź
@@ -91,8 +91,8 @@ Przykłady:
 {"taskId": 5, "response":["Bade64EncodedMP3"]}
 {"taskId": 1337, "response":["Bade64EncodedMP3", {"lat":51.2137, "lon":17.2137}, ["Base64EncodedJPEGByteArray"]]}
 ```
-W przypadku braku/błędnego session tokenu: 401 Unauthorized
-W przypadku próby dodania odpowiedzi do taska, którego odpowiedzi do dependencies nie zostały zatwierdzone przez GM'a: 403 Forbidden
+W przypadku braku/błędnego session tokenu: 401 Unauthorized \
+W przypadku próby dodania odpowiedzi do taska, którego odpowiedzi do dependencies nie zostały zatwierdzone przez GM'a: 403 Forbidden \
 W przypadku błędnych danych w polu response/innego błędu: 400 Bad Request
 
     POST /task?gameId=1 - dodaje taska dla gry o id 1
@@ -104,8 +104,8 @@ Przykład:
     "subtasks": [{"type": "PHOTO"}]
 }
 ```
-W przypadku braku/błędnego session tokenu: 401 Unauthorized
-W przypadku użytkownika niebędącego GM'em danej gry: 403 Forbidden
+W przypadku braku/błędnego session tokenu: 401 Unauthorized \
+W przypadku użytkownika niebędącego GM'em danej gry: 403 Forbidden \
 W przypadku innego błędu: 400 Bad Request
 
 Zwraca:
@@ -118,8 +118,8 @@ Zwraca:
 }
 ```
 
-    PATCH /task?taskId=6 - edytujemy istniejący task o danym taskId
-Uwaga: Nie przesyłamy subtasks - po utworzeniu taska nie można zmienić jego typu.
+    PATCH /task?taskId=6 - edytujemy istniejący task o danym taskId \
+Uwaga: Nie przesyłamy subtasks - po utworzeniu taska nie można zmienić jego typu. \
 Przykład:
 ```JSON
 {
@@ -127,8 +127,8 @@ Przykład:
     "description": "New Example description 6",
 }
 ```
-W przypadku braku/błędnego session tokenu: 401 Unauthorized
-W przypadku użytkownika niebędącego GM'em danej gry: 403 Forbidden
+W przypadku braku/błędnego session tokenu: 401 Unauthorized \
+W przypadku użytkownika niebędącego GM'em danej gry: 403 Forbidden \
 W przypadku innego błędu: 400 Bad Request
 
     [GM] GET /answers?gameId=1&filter=unchecked - zwraca listę wszystkich niesprawdzonych odpowiedzi w danej grze
@@ -142,8 +142,8 @@ Zwraca:
     ]
 }
 ```
-W przypadku braku/błędnego session tokenu: 401 Unauthorized
-W przypadku użytkownika niebędącego GM'em danej gry: 403 Forbidden
+W przypadku braku/błędnego session tokenu: 401 Unauthorized \
+W przypadku użytkownika niebędącego GM'em danej gry: 403 Forbidden \
 W przypadku innego błędu: 400 Bad Request
 
     [GM] GET /answers?gameId=1&filter=all - zwraca listę wszystkich odpowiedzi w danej grze
@@ -159,8 +159,8 @@ Zwraca:
     ]
 }
 ```
-W przypadku braku/błędnego session tokenu: 401 Unauthorized
-W przypadku użytkownika niebędącego GM'em danej gry: 403 Forbidden
+W przypadku braku/błędnego session tokenu: 401 Unauthorized \
+W przypadku użytkownika niebędącego GM'em danej gry: 403 Forbidden \
 W przypadku innego błędu: 400 Bad Request
 
     [USER] GET /answers?gameId=1&filter=unchecked - zwraca listę wszystkich niesprawdzonych odpowiedzi w danej grze dla użytkownika identyfikującego się session tokenem
@@ -174,7 +174,7 @@ Zwraca:
     ]
 }
 ```
-W przypadku braku/błędnego session tokenu: 401 Unauthorized
+W przypadku braku/błędnego session tokenu: 401 Unauthorized \
 W przypadku innego błędu: 400 Bad Request
 
     [USER] GET /answers?gameId=1&filter=all - zwraca listę wszystkich odpowiedzi w danej grze dla użytkownika identyfikującego się session tokenem
@@ -191,7 +191,7 @@ Zwraca:
     ]
 }
 ```
-W przypadku braku/błędnego session tokenu: 401 Unauthorized
+W przypadku braku/błędnego session tokenu: 401 Unauthorized \
 W przypadku innego błędu: 400 Bad Request
 
     GET /answers/<answerId> - zwraca całą odpowiedź (włącznie z polem response)
@@ -203,6 +203,6 @@ Zwraca:
     ]
 }
 ```
-W przypadku braku/błędnego session tokenu: 401 Unauthorized
-W przypadku użytkownika niebędącego GM'em danej gry/użytkownika niebędącego autorem odpowiedzi: 403 Forbidden
+W przypadku braku/błędnego session tokenu: 401 Unauthorized \
+W przypadku użytkownika niebędącego GM'em danej gry/użytkownika niebędącego autorem odpowiedzi: 403 Forbidden \
 W przypadku innego błędu: 400 Bad Request
