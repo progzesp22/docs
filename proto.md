@@ -1,4 +1,4 @@
-# Wersja protokołu: 1.0.1 (09-11-2022)
+# Wersja protokołu: 1.0.1a (10-11-2022)
 
 Założenia:
 - Wszystkie id są globalnie unikalne.
@@ -10,22 +10,18 @@ Założenia:
     POST /user/login - loguje użytkownika o danym loginie i haśle i zwraca mu session token
 Przykład:
 ```JSON
-[
-    {
-        "login": "misos",
-        "hasło": "krowa101"
-    }
-]
+{
+    "login": "misos",
+    "hasło": "krowa101"
+}
 ```
 
 Odpowiedź:
 ```JSON
-[
-    {
-        "seesionToken": "abcdefghjijfhrsnfnrnsfwnjfnjeffwfewfw",
-        "validUntil": "1997-07-16T19:20:30.45+01:00"
-    }
-]
+{
+    "seesionToken": "abcdefghjijfhrsnfnrnsfwnjfnjeffwfewfw",
+    "validUntil": "1997-07-16T19:20:30.45+01:00"
+}
 ```
 [WIP] Oczekujemy propozycji od backendu na sposób tworzenia sessionTokenów - ponoć spring ma libke. Dodatkowo stwórzcie kilka fake-owych użytkowników i default haseł - żeby na razie nie bawić się z register.
 
@@ -194,14 +190,10 @@ Zwraca:
 W przypadku braku/błędnego session tokenu: 401 Unauthorized \
 W przypadku innego błędu: 400 Bad Request
 
-    GET /answers/<answerId> - zwraca całą odpowiedź (włącznie z polem response)
+    GET /answer?answerId=2138420 - zwraca całą odpowiedź (włącznie z polem response)
 Zwraca:
 ```JSON
-{
-    "answers": [
-        {"taskId": 1, "answerId": 2138420, "userId": 1, "response":["fhshjjsdkjfdsnjfnj fssnfknsndkfnskfsd sfnsnf" "approved"]: false, "checked": false}
-    ]
-}
+{"taskId": 1, "answerId": 2138420, "userId": 1, "response":["fhshjjsdkjfdsnjfnj fssnfknsndkfnskfsd sfnsnf" "approved"], "approved":false, "checked": false}
 ```
 W przypadku braku/błędnego session tokenu: 401 Unauthorized \
 W przypadku użytkownika niebędącego GM'em danej gry/użytkownika niebędącego autorem odpowiedzi: 403 Forbidden \
