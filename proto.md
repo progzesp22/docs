@@ -1,4 +1,4 @@
-# Wersja protokołu: 1.0.2a (10-11-2022)
+# Wersja protokołu: 1.0.3 (10-11-2022)
 
 Założenia:
 - Wszystkie id są globalnie unikalne.
@@ -25,7 +25,7 @@ Odpowiedź:
 ```
 [WIP] Oczekujemy propozycji od backendu na sposób tworzenia sessionTokenów - ponoć spring ma libke. Dodatkowo stwórzcie kilka fake-owych użytkowników i default haseł - żeby na razie nie bawić się z register.
 
-
+    GET /tasks - zwraca listę wszystkich
     GET /tasks?gameId=1 - zwraca listę wszystkich tasków dla gry o id 1
 Przykład:
 ```JSON
@@ -34,6 +34,7 @@ Przykład:
         "taskId": 1,
         "name": "Example Task 1",
         "description": "Example description 1",
+        "gameId": 1,
         "subtasks": [{"type": "TEXT"}],
         "prerequisiteTasks":[]
     },
@@ -41,6 +42,7 @@ Przykład:
         "taskId": 2,
         "name": "Example Task 2",
         "description": "Example description 2",
+        "gameId": 1,
         "subtasks": [{"type": "PHOTO"}],
         "prerequisiteTasks":[]
     },
@@ -48,6 +50,7 @@ Przykład:
         "taskId": 3,
         "name": "Example Task 3",
         "description": "Example description 3",
+        "gameId": 1,
         "subtasks": [{"type": "QR_CODE"}],
         "prerequisiteTasks":[]
     },
@@ -55,6 +58,7 @@ Przykład:
         "taskId": 4,
         "name": "Example Task 4",
         "description": "Example description 4",
+        "gameId": 1,
         "subtasks": [{"type": "NAV_POS"}],
         "prerequisiteTasks":[]
     },
@@ -62,6 +66,7 @@ Przykład:
         "taskId": 5,
         "name": "Example Task 5",
         "description": "Example description 5",
+        "gameId": 1,
         "subtasks": [{"type": "AUDIO"}],
         "prerequisiteTasks":[]
     },
@@ -69,13 +74,15 @@ Przykład:
         "taskId": 1337,
         "name": "Multi task example",
         "description": "Multi task description",
+        "gameId": 1,
         "subtasks": [{"type": "AUDIO"}, {"type": "NAV_POS"}, {"type": "PHOTO"}],
         "prerequisiteTasks":[1, 4]
     }
 ]
 ```
 type: TEXT, PHOTO, QR_CODE, NAV_POS, AUDIO \
-W przypadku braku gameId response/innego błędu: 400 Bad Request.
+W przypadku braku gameId zwracamy wszystkie taski \
+W przypadku błędnego gameId: 400 Bad Request.
 
     POST /answers - dodaj odpowiedź
 Przykłady:
@@ -91,12 +98,13 @@ W przypadku braku/błędnego session tokenu: 401 Unauthorized \
 W przypadku próby dodania odpowiedzi do taska, którego odpowiedzi do dependencies nie zostały zatwierdzone przez GM'a: 403 Forbidden \
 W przypadku błędnych danych w polu response/innego błędu: 400 Bad Request
 
-    POST /tasks?gameId=1 - dodaje taska dla gry o id 1
+    POST /tasks - dodaje taska
 Przykład:
 ```JSON
 {
     "name": "Example Task 6",
     "description": "Example description 6",
+    "gameId": 1,
     "subtasks": [{"type": "PHOTO"}],
     "prerequisiteTasks":[]
 }
@@ -105,19 +113,8 @@ W przypadku braku/błędnego session tokenu: 401 Unauthorized \
 W przypadku użytkownika niebędącego GM'em danej gry: 403 Forbidden \
 W przypadku innego błędu: 400 Bad Request
 
-Zwraca:
-```JSON
-{
-    "taskId": 6,
-    "name": "Example Task 6",
-    "description": "Example description 6",
-    "subtasks": [{"type": "PHOTO"}],
-    "prerequisiteTasks":[]
-}
-```
-
-    PATCH /tasks?taskId=6 - edytujemy istniejący task o danym taskId \
-Uwaga: Nie przesyłamy subtasks ani prerequisiteTasks - po utworzeniu taska nie można zmienić jego typu. \
+    PATCH /tasks/<taskId> - edytujemy istniejący task o danym taskId \
+Uwaga: Nie przesyłamy gameId, subtasks, prerequisiteTasks - po utworzeniu taska nie można tego zmienić (przynajmnej na razie) \
 Przykład:
 ```JSON
 {
@@ -129,7 +126,7 @@ W przypadku braku/błędnego session tokenu: 401 Unauthorized \
 W przypadku użytkownika niebędącego GM'em danej gry: 403 Forbidden \
 W przypadku innego błędu: 400 Bad Request
 
-    [GM] GET /answers?gameId=1&filter=unchecked - zwraca listę wszystkich niesprawdzonych odpowiedzi w danej grze
+    [GM] GET /answers?gameId=1&filter=unchecked - zwraca listę wszystkich niesprawdzonych odpowiedzi w grze o danym gameId \
 Zwraca:
 ```JSON
 {
@@ -192,7 +189,7 @@ Zwraca:
 W przypadku braku/błędnego session tokenu: 401 Unauthorized \
 W przypadku innego błędu: 400 Bad Request
 
-    GET /answers?answerId=2138420 - zwraca całą odpowiedź (włącznie z polem response)
+    GET /answers/<answerId> - zwraca całą odpowiedź (włącznie z polem response)
 Zwraca:
 ```JSON
 {"taskId": 1, "answerId": 2138420, "userId": 1, "response":["fhshjjsdkjfdsnjfnj fssnfknsndkfnskfsd sfnsnf" "approved"], "approved":false, "checked": false}
