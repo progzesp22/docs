@@ -1,4 +1,4 @@
-# Wersja protokołu: 1.0.2 (10-11-2022)
+# Wersja protokołu: 1.0.2a (10-11-2022)
 
 Założenia:
 - Wszystkie id są globalnie unikalne.
@@ -97,7 +97,8 @@ Przykład:
 {
     "name": "Example Task 6",
     "description": "Example description 6",
-    "subtasks": [{"type": "PHOTO"}]
+    "subtasks": [{"type": "PHOTO"}],
+    "prerequisiteTasks":[]
 }
 ```
 W przypadku braku/błędnego session tokenu: 401 Unauthorized \
@@ -110,12 +111,13 @@ Zwraca:
     "taskId": 6,
     "name": "Example Task 6",
     "description": "Example description 6",
-    "subtasks": [{"type": "PHOTO"}]
+    "subtasks": [{"type": "PHOTO"}],
+    "prerequisiteTasks":[]
 }
 ```
 
     PATCH /task?taskId=6 - edytujemy istniejący task o danym taskId \
-Uwaga: Nie przesyłamy subtasks - po utworzeniu taska nie można zmienić jego typu. \
+Uwaga: Nie przesyłamy subtasks ani prerequisiteTasks - po utworzeniu taska nie można zmienić jego typu. \
 Przykład:
 ```JSON
 {
