@@ -77,7 +77,7 @@ Przykład:
 type: TEXT, PHOTO, QR_CODE, NAV_POS, AUDIO \
 W przypadku braku gameId response/innego błędu: 400 Bad Request.
 
-    POST /answer - dodaj odpowiedź
+    POST /answers - dodaj odpowiedź
 Przykłady:
 ```JSON
 {"taskId": 1, "response":["tutaj tekst"]}
@@ -91,7 +91,7 @@ W przypadku braku/błędnego session tokenu: 401 Unauthorized \
 W przypadku próby dodania odpowiedzi do taska, którego odpowiedzi do dependencies nie zostały zatwierdzone przez GM'a: 403 Forbidden \
 W przypadku błędnych danych w polu response/innego błędu: 400 Bad Request
 
-    POST /task?gameId=1 - dodaje taska dla gry o id 1
+    POST /tasks?gameId=1 - dodaje taska dla gry o id 1
 Przykład:
 ```JSON
 {
@@ -116,7 +116,7 @@ Zwraca:
 }
 ```
 
-    PATCH /task?taskId=6 - edytujemy istniejący task o danym taskId \
+    PATCH /tasks?taskId=6 - edytujemy istniejący task o danym taskId \
 Uwaga: Nie przesyłamy subtasks ani prerequisiteTasks - po utworzeniu taska nie można zmienić jego typu. \
 Przykład:
 ```JSON
@@ -192,7 +192,7 @@ Zwraca:
 W przypadku braku/błędnego session tokenu: 401 Unauthorized \
 W przypadku innego błędu: 400 Bad Request
 
-    GET /answer?answerId=2138420 - zwraca całą odpowiedź (włącznie z polem response)
+    GET /answers?answerId=2138420 - zwraca całą odpowiedź (włącznie z polem response)
 Zwraca:
 ```JSON
 {"taskId": 1, "answerId": 2138420, "userId": 1, "response":["fhshjjsdkjfdsnjfnj fssnfknsndkfnskfsd sfnsnf" "approved"], "approved":false, "checked": false}
