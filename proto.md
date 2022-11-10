@@ -1,4 +1,4 @@
-# Wersja protokołu: 1.0.1a (10-11-2022)
+# Wersja protokołu: 1.0.2 (10-11-2022)
 
 Założenia:
 - Wszystkie id są globalnie unikalne.
@@ -35,46 +35,46 @@ Przykład:
         "name": "Example Task 1",
         "description": "Example description 1",
         "subtasks": [{"type": "TEXT"}],
-        "dependencies":[]
+        "prerequisiteTasks":[]
     },
     {
         "taskId": 2,
         "name": "Example Task 2",
         "description": "Example description 2",
         "subtasks": [{"type": "PHOTO"}],
-        "dependencies":[]
+        "prerequisiteTasks":[]
     },
     {
         "taskId": 3,
         "name": "Example Task 3",
         "description": "Example description 3",
         "subtasks": [{"type": "QR_CODE"}],
-        "dependencies":[]
+        "prerequisiteTasks":[]
     },
     {
         "taskId": 4,
         "name": "Example Task 4",
         "description": "Example description 4",
         "subtasks": [{"type": "NAV_POS"}],
-        "dependencies":[]
+        "prerequisiteTasks":[]
     },
     {
         "taskId": 5,
         "name": "Example Task 5",
         "description": "Example description 5",
         "subtasks": [{"type": "AUDIO"}],
-        "dependencies":[]
+        "prerequisiteTasks":[]
     },
     {
         "taskId": 1337,
         "name": "Multi task example",
         "description": "Multi task description",
         "subtasks": [{"type": "AUDIO"}, {"type": "NAV_POS"}, {"type": "PHOTO"}],
-        "dependencies":[1, 4]
+        "prerequisiteTasks":[1, 4]
     }
 ]
 ```
-type: TEXT, PHOTO, QR_CODE, NAV_POS, AUDIO, MULTI \
+type: TEXT, PHOTO, QR_CODE, NAV_POS, AUDIO \
 W przypadku braku gameId response/innego błędu: 400 Bad Request.
 
     POST /answer - dodaj odpowiedź
