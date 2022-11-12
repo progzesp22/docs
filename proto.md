@@ -1,4 +1,4 @@
-# Wersja protokołu: 1.0.4 (10-11-2022)
+# Wersja protokołu: 1.0.5 (12-11-2022)
 
 Założenia:
 - Wszystkie id są globalnie unikalne.
@@ -31,7 +31,7 @@ Przykład:
 ```JSON
 [
     {
-        "taskId": 1,
+        "id": 1,
         "name": "Example Task 1",
         "description": "Example description 1",
         "gameId": 1,
@@ -39,7 +39,7 @@ Przykład:
         "prerequisiteTasks":[]
     },
     {
-        "taskId": 2,
+        "id": 2,
         "name": "Example Task 2",
         "description": "Example description 2",
         "gameId": 1,
@@ -47,7 +47,7 @@ Przykład:
         "prerequisiteTasks":[]
     },
     {
-        "taskId": 3,
+        "id": 3,
         "name": "Example Task 3",
         "description": "Example description 3",
         "gameId": 1,
@@ -55,7 +55,7 @@ Przykład:
         "prerequisiteTasks":[]
     },
     {
-        "taskId": 4,
+        "id": 4,
         "name": "Example Task 4",
         "description": "Example description 4",
         "gameId": 1,
@@ -63,7 +63,7 @@ Przykład:
         "prerequisiteTasks":[]
     },
     {
-        "taskId": 5,
+        "id": 5,
         "name": "Example Task 5",
         "description": "Example description 5",
         "gameId": 1,
@@ -104,7 +104,7 @@ W przypadku braku/błędnego session tokenu: 401 Unauthorized \
 W przypadku użytkownika niebędącego GM'em danej gry: 403 Forbidden \
 W przypadku innego błędu: 400 Bad Request
 
-    PATCH /tasks/<taskId> - edytujemy istniejący task o danym taskId \
+    PATCH /tasks/<id> - edytujemy istniejący task o danym id \
 Uwaga: Nie przesyłamy gameId, prerequisiteTasks - po utworzeniu taska nie można tego zmienić (przynajmnej na razie) \
 Przykład:
 ```JSON
@@ -121,9 +121,9 @@ W przypadku innego błędu: 400 Bad Request
 Zwraca:
 ```JSON
 [
-    {"taskId": 1, "answerId": 2138420, "userId": 1, "approved": false, "checked": false},
-    {"taskId": 2, "answerId": 13231232, "userId": 2, "approved": false, "checked": false},
-    {"taskId": 3, "answerId": 13893212, "userId": 3, "approved": false, "checked": false}
+    {"id": 2138420, "taskId": 1, "userId": 1, "approved": false, "checked": false},
+    {"id": 13231232, "taskId": 2, "userId": 2, "approved": false, "checked": false},
+    {"id": 13893212, "taskId": 3, "userId": 3, "approved": false, "checked": false}
 ]
 ```
 W przypadku braku/błędnego session tokenu: 401 Unauthorized \
@@ -134,11 +134,11 @@ W przypadku innego błędu: 400 Bad Request
 Zwraca:
 ```JSON
 [
-    {"taskId": 1, "answerId": 2138420, "userId": 1, "approved": false, "checked": false},
-    {"taskId": 2, "answerId": 13231232, "userId": 2, "approved": false, "checked": false},
-    {"taskId": 3, "answerId": 13893212, "userId": 3, "approved": false, "checked": false},
-    {"taskId": 1, "answerId": 721387420, "userId": 5, "approved": false, "checked": true},
-    {"taskId": 3, "answerId": 521387420, "userId": 5, "approved": true, "checked": true},
+    {"id": 2138420, "taskId": 1, "userId": 1, "approved": false, "checked": false},
+    {"id": 13231232, "taskId": 2, "userId": 2, "approved": false, "checked": false},
+    {"id": 13893212, "taskId": 3, "userId": 3, "approved": false, "checked": false},
+    {"id": 721387420, "taskId": 1, "userId": 5, "approved": false, "checked": true},
+    {"id": 521387420, "taskId": 3, "userId": 5, "approved": true, "checked": true},
 ]
 ```
 W przypadku braku/błędnego session tokenu: 401 Unauthorized \
@@ -149,9 +149,9 @@ W przypadku innego błędu: 400 Bad Request
 Zwraca:
 ```JSON
 [
-    {"taskId": 1, "answerId": 2138420, "userId": 1, "approved": false, "checked": false},
-    {"taskId": 2, "answerId": 2138421, "userId": 1, "approved": false, "checked": false},
-    {"taskId": 3, "answerId": 2138422, "userId": 1, "approved": false, "checked": false}
+    {"id": 2138420, "taskId": 1, "userId": 1, "approved": false, "checked": false},
+    {"id": 2138421, "taskId": 2, "userId": 1, "approved": false, "checked": false},
+    {"id": 2138422, "taskId": 3, "userId": 1, "approved": false, "checked": false}
 ]
 ```
 W przypadku braku/błędnego session tokenu: 401 Unauthorized \
@@ -161,22 +161,22 @@ W przypadku innego błędu: 400 Bad Request
 Zwraca:
 ```JSON
 [
-    {"taskId": 1, "answerId": 2138420, "userId": 1, "approved": false, "checked": false},
-    {"taskId": 2, "answerId": 2138421, "userId": 1, "approved": false, "checked": false},
-    {"taskId": 3, "answerId": 2138422, "userId": 1, "approved": false, "checked": false},
-    {"taskId": 5, "answerId": 2138423, "userId": 1, "approved": true, "checked": true},
-    {"taskId": 6, "answerId": 2138424, "userId": 1, "approved": true, "checked": true},
-    {"taskId": 7, "answerId": 2138425, "userId": 1, "approved": false, "checked": true}
+    {"id": 2138420, "taskId": 1, "userId": 1, "approved": false, "checked": false},
+    {"id": 2138421, "taskId": 2, "userId": 1, "approved": false, "checked": false},
+    {"id": 2138422, "taskId": 3, "userId": 1, "approved": false, "checked": false},
+    {"id": 2138423, "taskId": 5, "userId": 1, "approved": true, "checked": true},
+    {"id": 2138424, "taskId": 6, "userId": 1, "approved": true, "checked": true},
+    {"id": 2138425, "taskId": 7, "userId": 1, "approved": false, "checked": true}
 ]
 
 ```
 W przypadku braku/błędnego session tokenu: 401 Unauthorized \
 W przypadku innego błędu: 400 Bad Request
 
-    GET /answers/<answerId> - zwraca całą odpowiedź (włącznie z polem response)
+    GET /answers/<id> - zwraca całą odpowiedź (włącznie z polem response)
 Zwraca:
 ```JSON
-{"taskId": 1, "answerId": 2138420, "userId": 1, "response":"fhshjjsdkjfdsnjfnj fssnfknsndkfnskfsd sfnsnf", "approved":false, "checked": false}
+{"id": 2138420, "taskId": 1, "userId": 1, "response":"fhshjjsdkjfdsnjfnj fssnfknsndkfnskfsd sfnsnf", "approved":false, "checked": false}
 ```
 W przypadku braku/błędnego session tokenu: 401 Unauthorized \
 W przypadku użytkownika niebędącego GM'em danej gry/użytkownika niebędącego autorem odpowiedzi: 403 Forbidden \
