@@ -12,14 +12,14 @@ Przykład:
 ```JSON
 {
     "login": "misos",
-    "hasło": "krowa101"
+    "password": "krowa101"
 }
 ```
 
 Odpowiedź:
 ```JSON
 {
-    "seesionToken": "abcdefghjijfhrsnfnrnsfwnjfnjeffwfewfw",
+    "sessionToken": "abcdefghjijfhrsnfnrnsfwnjfnjeffwfewfw",
     "validUntil": "1997-07-16T19:20:30.45+01:00"
 }
 ```
