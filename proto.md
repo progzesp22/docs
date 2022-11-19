@@ -1,10 +1,10 @@
-# Wersja protokołu: 1.0.5 (12-11-2022)
+# Wersja protokołu: 1.0.5a (19-11-2022)
 
 Założenia:
 - Wszystkie id są globalnie unikalne.
 - Session token jest przekazywany w headerze i na jego podstawie jest określane userId.
 - Dla odpowiedzi tasków typu tekst nakładamy limit 500 znaków.
-- Dla tasków AUDIO i PHOTOT robimy weryfikacje formatu odebranych danych od użytkownika.
+- Dla tasków AUDIO i PHOTO robimy weryfikację formatu odebranych danych od użytkownika.
 - WAŻNA ZMIANA: Z tasków wysyłanych przy listowaniu usuwamy pole response - bo obrazki za dużo by zajmowały.
 
     POST /user/login - loguje użytkownika o danym loginie i haśle i zwraca mu session token
@@ -12,14 +12,14 @@ Przykład:
 ```JSON
 {
     "login": "misos",
-    "hasło": "krowa101"
+    "password": "krowa101"
 }
 ```
 
 Odpowiedź:
 ```JSON
 {
-    "seesionToken": "abcdefghjijfhrsnfnrnsfwnjfnjeffwfewfw",
+    "sessionToken": "abcdefghjijfhrsnfnrnsfwnjfnjeffwfewfw",
     "validUntil": "1997-07-16T19:20:30.45+01:00"
 }
 ```
