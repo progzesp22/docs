@@ -39,20 +39,6 @@
 # Comms/Proto
 Endpointy znajdują się w proto.md
 
-
-7. PATCH /answers/{id} - zmieniamy parametry answer, czyli status approved i checked 
-Example payload 1:
-```JSON
-{ "approved":true,
-"checked": true}
-```
-
-Example payload 2:
-```JSON
-{ "approved":false,
-"checked": true}
-```
-
 # Backend
 Implementacja serwera realizującego zapytania GET/POST z Comms/Proto -> ma przechowywać dane przynajmniej do restartu (w RAMie). Jak jesteście ambitni, to dogadajcie się z zespołem DB odnośnie zapisu. Jak mamy requesta POST /answers/approve to zapisujemy, które answery dostały odpowiedzi, a które nie i potem nie wysyłamy ich w GET /answers/list_unchecked.
 
