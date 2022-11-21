@@ -1,5 +1,6 @@
 # Wersja protokołu: 1.0.5a (19-11-2022)
-
+### Przeniesiono jeden endpoint z drugiego pliku, pozostałe endpointy niezmienione (22-11-2022)
+<br />
 Założenia:
 - Wszystkie id są globalnie unikalne.
 - Session token jest przekazywany w headerze i na jego podstawie jest określane userId.
@@ -181,3 +182,21 @@ Zwraca:
 W przypadku braku/błędnego session tokenu: 401 Unauthorized \
 W przypadku użytkownika niebędącego GM'em danej gry/użytkownika niebędącego autorem odpowiedzi: 403 Forbidden \
 W przypadku innego błędu: 400 Bad Request
+
+
+    [GM] PATCH /answers/{id} - zmieniamy parametry answer, czyli status approved i checked 
+Example payload 1:
+```JSON
+{ "approved":true,
+"checked": true}
+```
+
+Example payload 2:
+```JSON
+{ "approved":false,
+"checked": true}
+```
+W przypadku braku/błędnego session tokenu: 401 Unauthorized \
+W przypadku użytkownika niebędącego GM'em danej gry/użytkownika niebędącego autorem odpowiedzi: 403 Forbidden \
+W przypadku innego błędu: 400 Bad Request
+
