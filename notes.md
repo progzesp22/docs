@@ -36,7 +36,7 @@ Wpływ stanów na uprawnienia:
 # Frontend
 
 ## Start - logowanie
-1. Użytkownik odpala apkę
+1. Użytkownik uruchamia aplikację
 2. Użytkownik wpisuje login i hasło
 3. Użytkownik klika loguj
 4a. Komunikat (popup/toast) o błędzie w logowaniu
@@ -60,13 +60,37 @@ Ekran do edycji i tworzenia gry wyglądają identycznie. Przy tworzeniu nowej gr
 5. Użytkownik klika na przycisk "zapisz" (lub z odpowienim symbolem), który przesyła wprowadzone informacje na serwer
 6. Użytkownik może kliknąć na przycisk "rozpocznij oczekiwanie na graczy" (albo lepsza nazwa), który prześle do serwera informacje o zmianie stanu gry i przejście na ekran [oczekiwania na graczy](). Przed wykonaniem akcji wyświetla się popup z prośbą o potwierdzenie.
 
-## [GM] Oczekiwanie na graczy
+## [GM] Oczekiwanie na gracz
 1. Wyświetla się tytuł gry oraz lista graczy, którzy zgłosili się do danej gry
 2. Jeżeli gra ma czas automatycznego startu wyświetlane jest data startu
-2. Kliknięcie przycisku "start" przesyła do serwera informację o zmianie stanu i przechodzi na ekran [rozgrywka]().
+3. Kliknięcie przycisku "start" przesyła do serwera informację o zmianie stanu i przechodzi na ekran [gra]().
 
-## [GM] Rozgrywka
-1. 
+## [GM] Gra
+1. Wyświetla się nazwa gry
+2. Jeżeli jest ustalony czas zakończenia, wyświetla się pasek postępu
+3. Wyświetla się pasek postępu ile całkowicie zadań zostało wykonanych
+4. Przycisk "koniec gry", który kończy grę. Wymaga potwierdzenia przez popup. Po zakończeniu przechodzi do ekranu ranking.
+5. Wyświetla się liczba nieocenionych zadań, wraz z przyciskiem "oceniaj", który otwiera ekran [ocenianie](). 
+
+## [GM] Ocenianie 
+1. Co 5 sekund w tle pobierane są nowe odpowiedzi.
+2. Jeżeli wszystkie ocenione odpowiedzi są ocenione, wyświetla się stosowny komunikat.
+3. Jeżeli są nieocenione zadania, wybierane jest to najstarsze.
+4. Wyświetla się nazwa zadania, jego treść oraz przesłane subtaski.
+5. Zadanie można ocenić przy pomocy dwóch przycisków czerwony (odrzucenie) i zielony (akceptacja), bądź poprzez swipe jak na Tinderze.
+6. Po ocenianiu zadania, wyświetlane jest kolejne.
+
+## [GM] Wiadomości
+1. Pole tekstowe do którego można wpisać wiadomość
+2. Przycisk "Wyślij wiadomość do wszystkich"
+
+## [GM] Hamburger menu
+Podczas trwania gry można przemieszczać się między ekranami:
+- gra
+- podgląd zadań
+- odpowiedzi
+- wiadomości
+- ranking
 
 ## [Gracz] Lista gier
 1. Wyświetla się lista gier o stanie "oczekiwanie na graczy"
@@ -75,5 +99,46 @@ Ekran do edycji i tworzenia gry wyglądają identycznie. Przy tworzeniu nowej gr
 
 ## [Gracz] Opis gry
 1. Wyświetla się tytuł gry, opis, data startu (jeżeli istnieje)
-2. 
+2. Wyświetla się nazwa drużyny, w której obecnie znajduje się gracz
+3. Jeżeli gra jest w stanie "rozgrywka", pokazuje się przycisk "Graj" albo "Przejdź do zadań"
+4. Kliknięcie przycisku powoduje przejście do ekranu [lista zadań]() i uruchomienie w tle procesu wykrywania końca gry.
 
+## [Gracz] Lista zadań
+1. Zadania wyświetlają się w kolejności: z przesłanym błędnym rozwiązaniem, bez przesłanych rozwiązań, zaliczone
+2. Przy każdym zadaniu wyświetla się jego nazwa, liczba punktów i status
+3. Po kliknięciu na zadanie, przejście do ekranu [zadanie]().
+
+## [Gracz] Hamburger menu
+W czasie trwania gry można przechodzić między ekranami:
+- lista zadań
+- ranking
+- wiadomości
+
+## [Gracz] Zadanie
+1. Wyświetla się tytuł zadania, jego treść oraz lista załączników do treści (np. zdjęcie).
+2. Wyświetla się lista odpowiedzi, które użytkownik zgłosił do tego zadania.
+3. Przy każdej odpowiedzi wyświetla się jej status: nieoceniona / zatwierdzona / odrzucona.
+4. Jeżeli nie ma odpowiedzi, bądź żadna nie została zatwierdzona, pokazuje się przycisk "Dodaj odpowiedź", który powoduje przejście do ekranu [udzielania odpowiedzi]().
+
+## [Gracz] Odpowiedź
+1. Wyświetla się tytuł zadania.
+2. Dla każdego subtaska (typu załącznika) pojawia się pole na wprowadzenie jego treści. Jedno pod drugim
+3. Na dole znajduje się przycisk "Prześlij". Domyślnie wyszarzony. Aktywuje się, gdy wszystkie powyższe pola zostaną wypełnione.
+
+
+## [Gracz] Wiadomości
+1. Wyświetla się lista broadcastów otrzymanych od GMa
+
+## [Gracz] Procesy w tle
+Proces uruchamia się w momencie dołączenia do gry. Co stały interwał (np. 15 sekund) sprawdzane jest:
+- czy gra jest w stanie "rozgrywka" czy jest już "zakończona". Jeżeli gra się zakończy, otwiera się ekran [podsumowanie](). Jeżeli aplikacja jest zamknięta, wysyłane jest powiadomienie.
+- czy pojawiły się nowe broadcasty, jeżeli tak, pojawia się nowe powiadomienie.
+
+## [GM] Procesy w tle
+Proces uruchamia się w momencie startu gry. Co stały interwał (np. 15 sekund) sprawdzane jest:
+- czy pojawiły się nowe odpowiedzi, każda odpowiedź wysyła krótki sygnał dźwiękowy
+
+
+## Ranking
+1. Wyświetla się nazwa gry, opis.
+2. Wyświetla się lista drużyn, w kolejności według zdobytych, wraz z członkami każdej drużyny.
