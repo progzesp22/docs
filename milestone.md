@@ -92,7 +92,7 @@ Zadanie składa się z:
 Ekran do edycji i tworzenia gry wyglądają identycznie. Przy tworzeniu nowej gry wszystkie pola są domyślnie puste, a przy edycji zostają automatycznie wypełnione obecnymi informacjami.
 1. Wprowadzana jest nazwa gry
 2. Wprowadzany jest opis gry <br>
-3a. Wybierane jest czy gra ma startować automatycznie o zadanje godzinie (checkbox) <br>
+3a. Wybierane jest czy gra ma startować automatycznie o zadanej godzinie (checkbox) <br>
 3b. Pokazuje się pole, w którym wprowadzana jest data i godzina startu
 4. Wybierane jest czy gra ma mieć automatyczne zakończenie. Jeżeli to potrzebne, pojawiają się pola z miejscem na wpisanie czasu końca lub wymaganej liczby punktów.
 5. Wyświetla się lista zadań <br>
