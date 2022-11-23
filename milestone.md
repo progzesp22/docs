@@ -25,6 +25,8 @@ Wpływ stanów na uprawnienia:
 
   Gracz nie widzi zadań
 
+  Gracz może stworzyć drużynę lub dołączyć do istniejącej
+
   GM nie może edytować zadań
 
 - rozgrywka
@@ -67,11 +69,11 @@ Możliwy jest wybór sposobu zakończenia gry:
 
 ## Konstrukcja zadań
 Zadanie składa się z:
-    - tytułu
-    - opisu tekstowego
-    - listy subtasków, czyli typów załączników jakie użytkownik musi przesłać w jednej odpowiedzi
-    - liczby punktów za wykonanie zadania
-    - list prerequistes, czyli zadań, które muszą zostać wykonane, zanim to zadanie stanie się widoczne dla drużyny
+- tytułu
+- opisu tekstowego
+- listy subtasków, czyli typów załączników jakie użytkownik musi przesłać w jednej odpowiedzi
+- liczby punktów za wykonanie zadania
+- list prerequistes, czyli zadań, które muszą zostać wykonane, zanim to zadanie stanie się widoczne dla drużyny
   
 # Frontend
 
@@ -79,9 +81,9 @@ Zadanie składa się z:
 1. Użytkownik uruchamia aplikację
 2. Użytkownik wpisuje login i hasło
 3. Użytkownik klika loguj <br>
-4a. Komunikat (popup/toast) o błędzie w logowaniu <br>
-4b. Ekran z dwoma dużymi przyciskami do wyboru GM / gracz 
-5. Przejście do ekranu [lista gier](#lista-gier)
+3a. Komunikat (popup/toast) o błędzie w logowaniu <br>
+3b. Ekran z dwoma dużymi przyciskami do wyboru GM / gracz 
+4. Przejście do ekranu [lista gier](#lista-gier)
 
 ## [GM] Lista gier
 1. Wyświetlają się gry o wszystkich statusach, w których użytkownik jest GMem. Sortowane wg statusu i czasu utworzenia.
@@ -91,25 +93,25 @@ Zadanie składa się z:
 ## [GM] Nowa gra / edycja gry
 Ekran do edycji i tworzenia gry wyglądają identycznie. Przy tworzeniu nowej gry wszystkie pola są domyślnie puste, a przy edycji zostają automatycznie wypełnione obecnymi informacjami.
 1. Wprowadzana jest nazwa gry
-2. Wprowadzany jest opis gry <br>
-3a. Wybierane jest czy gra ma startować automatycznie o zadanej godzinie (checkbox) <br>
-3b. Pokazuje się pole, w którym wprowadzana jest data i godzina startu
+2. Wprowadzany jest opis gry
+3. Wybierane jest czy gra ma startować automatycznie o zadanej godzinie (checkbox)
+    1. Pokazuje się pole, w którym wprowadzana jest data i godzina startu
 4. Wybierane jest czy gra ma mieć automatyczne zakończenie. Jeżeli to potrzebne, pojawiają się pola z miejscem na wpisanie czasu końca lub wymaganej liczby punktów.
-5. Wyświetla się lista zadań <br>
-6a. Symbolem "+" można dodać nowe zadanie <br>
-6b. Klikając na istniejące zadanie można je edytować
+5. Wyświetla się lista zadań
+    1. Symbolem "+" można dodać nowe zadanie
+    2. Klikając na istniejące zadanie można je edytować
 7. Użytkownik klika na przycisk "zapisz" (lub z odpowienim symbolem), który przesyła wprowadzone informacje na serwer
 8. Użytkownik może kliknąć na przycisk "rozpocznij oczekiwanie na graczy" (albo lepsza nazwa), który prześle do serwera informacje o zmianie stanu gry i przejście na ekran [oczekiwania na graczy](). Przed wykonaniem akcji wyświetla się popup z prośbą o potwierdzenie.
 
 ## [GM] Nowe zadanie
 1. Pola tekstowe na tytuł i treść zadania
 2. Pole na wpisanie liczby punktów, może być wprowadzone za pomocą klawiatury lub zmienione przy pomocy przycisków + / -.
-3. Pole, które umożliwia zaznaczenie checkboxami jakie zadania należy wykonać zanim to zadanie stanie się dostępne.
+3. Pole, które wyświetla prerequisite taski. W celu dodania nowej zależności, w pole tekstowe wpisywana jest nazwa istniejącego już zadania, podspodem pojawiają się znalezione zadania o takiej nazwie (można dodać fuzzy matching). Dodane już prerequisite zadania można usunąć klikając X.
 4. Przycisk (+) / "Dodaj pole odpowiedzi", po jego kliknięciu z listy rozwijanej wybierany jest typ TEXT, PHOTO, QR lub AUDIO.
 5. Przycisk "Zapisz"
 
 ## [GM] Oczekiwanie na gracz
-1. Wyświetla się tytuł gry oraz lista graczy, którzy zgłosili się do danej gry
+1. Wyświetla się tytuł gry oraz lista drużyn z rozbiciem na graczy, którzy zgłosili się do danej gry
 2. Jeżeli gra ma czas automatycznego startu wyświetlane jest data startu
 3. Kliknięcie przycisku "start" przesyła do serwera informację o zmianie stanu i przechodzi na ekran [gra]().
 
@@ -122,15 +124,15 @@ Ekran do edycji i tworzenia gry wyglądają identycznie. Przy tworzeniu nowej gr
 
 ## [GM] Ocenianie 
 1. Co 5 sekund w tle pobierane są nowe odpowiedzi.
-2. Jeżeli wszystkie ocenione odpowiedzi są ocenione, wyświetla się stosowny komunikat.
-3. Jeżeli są nieocenione zadania, wybierane jest to najstarsze.
-4. Wyświetla się nazwa zadania, jego treść oraz przesłane subtaski.
-5. Zadanie można ocenić przy pomocy dwóch przycisków czerwony (odrzucenie) i zielony (akceptacja), bądź poprzez swipe jak na Tinderze.
-6. Po ocenianiu zadania, wyświetlane jest kolejne.
+2. Wyświetlana jest lista nieocenionych odpowiedzi
+3. Klikając na odpowiedź otwiera się ekran z tytułem i wszystkimi załączonymi subtaskami.
+4. Przy pomocy przycisków zaakceptuj, odrzuć można ocenić rozwiązanie
+5. Po ocenieniu następuje powrót do listy odpowiedzi.
 
 ## [GM] Wiadomości
 1. Pole tekstowe do którego można wpisać wiadomość
 2. Przycisk "Wyślij wiadomość do wszystkich"
+3. Wysłanie powinno zostać potwierdzone popupem.
 
 ## [GM] Hamburger menu
 Podczas trwania gry można przemieszczać się między ekranami:
@@ -147,7 +149,8 @@ Podczas trwania gry można przemieszczać się między ekranami:
 
 ## [Gracz] Opis gry
 1. Wyświetla się tytuł gry, opis, data startu (jeżeli istnieje)
-2. Wyświetla się nazwa drużyny, w której obecnie znajduje się gracz
+2. Wyświetla się lista drużyn, do których można dołączyć
+3. Można utworzyć nową drużynę, należy podac jej nazwę
 3. Jeżeli gra jest w stanie "rozgrywka", pokazuje się przycisk "Graj" albo "Przejdź do zadań"
 4. Kliknięcie przycisku powoduje przejście do ekranu [lista zadań]() i uruchomienie w tle procesu wykrywania końca gry.
 
