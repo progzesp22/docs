@@ -25,6 +25,14 @@ Response:
 }
 ```
 
+    POST /user/register - rejestruje użytkownika o danym loginie i haśle (na razie bez autentyfikacji - każdy może wywołać)
+```JSON
+{
+    "login": "misos2",
+    "password": "1234"
+}
+```
+
 W requestach, które wymagają uwierzytelnienia wysyłamy <token> w headerze postaci:
 ```
 Authorization=Bearer <token>
@@ -59,7 +67,7 @@ Response:
 ]
 ```
 
-    POST /teams - towrzy dryżynę
+    POST /teams - tworzy dryżynę
 Request:
 ```JSON
 [
@@ -83,7 +91,7 @@ Response:
 
 Uwaga: W polach creator i members znajdują się loginy uzytkowników.
 
-    PATCH /teams/<id>/ - modyfikuje dane drużyny (tylko creator może wykonać tego reuqesta)
+    PATCH /teams/<id>/ - modyfikuje dane drużyny (tylko creator lub GM może wykonać tego reuqesta)
 ```JSON
 {
     "name": "Mundo's Overlords",
@@ -131,7 +139,21 @@ Request:
 }
 ```
 
+```JSON
+{
+    "id": 12345,
+    "name": "Bring back season 4 v2",
+    "gameMaster": "misos",
+    "startTime": "1997-07-26T19:20:30.45+01:00",
+    "endCondition": "SCORE",
+    "endScore": 1337
+    "state": "CREATED"
+}
+```
+
 Uwaga: Jeśli pojawia się endContion: TIME, to musi pojawić się pole endTime, w p.p. nie ma tego pola.
+Uwaga: Jeśli pojawia się endContition: SCORE, to musi pojawić się pole endScore, w p.p. nie ma tego pola.
+End conditions: MANUAL, TIME, SCORE, TASKS
 
     PATCH /games/<id> - zmienia grę o danym id. Użytkownik musi być jej gameMasterem. Jeśli status !- "CREATED" to jego zmiana jest błędem.
 ```JSON
