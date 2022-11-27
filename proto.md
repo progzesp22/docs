@@ -39,7 +39,7 @@ Rejestruje użytkownika o danym loginie i haśle (na razie bez autentyfikacji - 
 Request:
 ```JSON
 {
-    "login": "misos2",
+    "username": "misos2",
     "password": "1234"
 }
 ```
