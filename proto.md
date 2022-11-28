@@ -15,7 +15,7 @@ Loguje użytkownika o danym loginie i haśle, zwraca mu session token.
 Request:
 ```JSON
 {
-    "login": "misos",
+    "username": "misos",
     "password": "krowa101"
 }
 ```
