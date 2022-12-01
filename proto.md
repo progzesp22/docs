@@ -539,3 +539,46 @@ Wyjątki:
 * W przypadku użytkownika niebędącego GM'em danej gry/użytkownika niebędącego autorem odpowiedzi: 403 Forbidden
 * W przypadku innego błędu: 400 Bad Request
 
+
+# Rankingi i statystyka
+## Ranking drużyn
+  GET /stat/leaderboard?gameId=1 
+Opis: Zwraca listę drużyn sortowaną według malejącej liczby punktów.
+
+Response:
+```JSON
+[
+  {
+    "id":5,
+    "name":"Drużyna A",
+    "members":["Ala", "Hela", "Ola"],
+    "score": 230
+  },
+  {
+    "id":15,
+    "name":"Drużyna B",
+    "members":["Adam", "Henryk", "Oleksy"],
+    "score": 120
+  },
+]
+```
+
+## Statystyka zadań
+  GET /stat/tasks?gameId=1
+Opis: Zwraca listę zadań w danej grze z wyliczonymi statystkami. 
+
+Response:
+```JSON
+[
+  {
+    "id":5,
+    "name":"Szyszunie",
+    "maxPossibleScore": 20,
+    "averageScore": 5.43,
+    "teamsAttempted": 3,
+    "teamsApproved": 2,
+  }
+]
+
+```
+
