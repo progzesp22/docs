@@ -1,4 +1,4 @@
-# Wersja protokołu: 1.0.6 (24-11-2022)
+# Wersja protokołu: 1.0.7 (01-12-2022)
 
 # Założenia:
 * Wszystkie id są globalnie unikalne.
@@ -337,7 +337,8 @@ Response:
         "description": "Example description 1",
         "gameId": 1,
         "type": "TEXT",
-        "prerequisiteTasks":[]
+        "prerequisiteTasks":[],
+        "maxScore": 12
     },
     {
         "id": 2,
@@ -345,7 +346,8 @@ Response:
         "description": "Example description 2",
         "gameId": 1,
         "type": "PHOTO",
-        "prerequisiteTasks":[]
+        "prerequisiteTasks":[],
+        "maxScore": 12
     },
     {
         "id": 3,
@@ -353,7 +355,8 @@ Response:
         "description": "Example description 3",
         "gameId": 1,
         "type": "QR_CODE",
-        "prerequisiteTasks":[]
+        "prerequisiteTasks":[],
+        "maxScore": 12
     }
 ]
 ```
@@ -375,7 +378,8 @@ Request:
     "description": "Example description 6",
     "gameId": 1,
     "type": "PHOTO",
-    "prerequisiteTasks":[]
+    "prerequisiteTasks":[],
+    "maxScore": 12
 }
 ```
   
@@ -394,6 +398,7 @@ Request:
 {
     "name": "New Example Task 6",
     "description": "New Example description 6",
+    "maxScore": 12
 }
 ```
   
@@ -419,7 +424,10 @@ Requests (multiple examples):
 {"taskId": 4, "response":{"lat":51.2137, "lon":17.2137}}
 {"taskId": 5, "response":"Base64EncodedMP3"}
 ```
-  
+
+Uwagi:
+Pole score jest inicjalizowane 0.  
+
 Wyjątki:  
 * W przypadku braku/błędnego session tokenu: 401 Unauthorized
 * W przypadku próby dodania odpowiedzi do taska, którego odpowiedzi do prerequisites nie zostały zatwierdzone przez GM'a: 403 Forbidden
@@ -433,9 +441,9 @@ Zwraca listę wszystkich niesprawdzonych odpowiedzi w grze o danym gameId.
 Response:
 ```JSON
 [
-    {"id": 2138420, "taskId": 1, "userId": 1, "approved": false, "checked": false},
-    {"id": 13231232, "taskId": 2, "userId": 2, "approved": false, "checked": false},
-    {"id": 13893212, "taskId": 3, "userId": 3, "approved": false, "checked": false}
+    {"id": 2138420, "taskId": 1, "userId": 1, "approved": false, "checked": false, "score":0},
+    {"id": 13231232, "taskId": 2, "userId": 2, "approved": false, "checked": false, "score":0},
+    {"id": 13893212, "taskId": 3, "userId": 3, "approved": false, "checked": false, "score":0}
 ]
 ```
   
@@ -451,11 +459,11 @@ Zwraca listę wszystkich odpowiedzi w danej grze.
 Response:
 ```JSON
 [
-    {"id": 2138420, "taskId": 1, "userId": 1, "approved": false, "checked": false},
-    {"id": 13231232, "taskId": 2, "userId": 2, "approved": false, "checked": false},
-    {"id": 13893212, "taskId": 3, "userId": 3, "approved": false, "checked": false},
-    {"id": 721387420, "taskId": 1, "userId": 5, "approved": false, "checked": true},
-    {"id": 521387420, "taskId": 3, "userId": 5, "approved": true, "checked": true},
+    {"id": 2138420, "taskId": 1, "userId": 1, "approved": false, "checked": false, "score":0},
+    {"id": 13231232, "taskId": 2, "userId": 2, "approved": false, "checked": false, "score":0},
+    {"id": 13893212, "taskId": 3, "userId": 3, "approved": false, "checked": false, "score":0},
+    {"id": 721387420, "taskId": 1, "userId": 5, "approved": false, "checked": true, "score":0},
+    {"id": 521387420, "taskId": 3, "userId": 5, "approved": true, "checked": true, "score":9},
 ]
 ```
 
@@ -472,9 +480,9 @@ Zwraca listę wszystkich niesprawdzonych odpowiedzi w danej grze dla użytkownik
 Response:  
 ```JSON
 [
-    {"id": 2138420, "taskId": 1, "userId": 1, "approved": false, "checked": false},
-    {"id": 2138421, "taskId": 2, "userId": 1, "approved": false, "checked": false},
-    {"id": 2138422, "taskId": 3, "userId": 1, "approved": false, "checked": false}
+    {"id": 2138420, "taskId": 1, "userId": 1, "approved": false, "checked": false, "score":0},
+    {"id": 2138421, "taskId": 2, "userId": 1, "approved": false, "checked": false, "score":0},
+    {"id": 2138422, "taskId": 3, "userId": 1, "approved": false, "checked": false, "score":0}
 ]
 ```
   
@@ -489,12 +497,12 @@ Zwraca listę wszystkich odpowiedzi w danej grze dla użytkownika identyfikując
 Response:  
 ```JSON
 [
-    {"id": 2138420, "taskId": 1, "userId": 1, "approved": false, "checked": false},
-    {"id": 2138421, "taskId": 2, "userId": 1, "approved": false, "checked": false},
-    {"id": 2138422, "taskId": 3, "userId": 1, "approved": false, "checked": false},
-    {"id": 2138423, "taskId": 5, "userId": 1, "approved": true, "checked": true},
-    {"id": 2138424, "taskId": 6, "userId": 1, "approved": true, "checked": true},
-    {"id": 2138425, "taskId": 7, "userId": 1, "approved": false, "checked": true}
+    {"id": 2138420, "taskId": 1, "userId": 1, "approved": false, "checked": false, "score": 0},
+    {"id": 2138421, "taskId": 2, "userId": 1, "approved": false, "checked": false, "score": 0},
+    {"id": 2138422, "taskId": 3, "userId": 1, "approved": false, "checked": false, "score": 0},
+    {"id": 2138423, "taskId": 5, "userId": 1, "approved": true, "checked": true, "score": 8},
+    {"id": 2138424, "taskId": 6, "userId": 1, "approved": true, "checked": true, "score": 4},
+    {"id": 2138425, "taskId": 7, "userId": 1, "approved": false, "checked": true, "score": 0}
 ]
 ```
 
@@ -509,7 +517,7 @@ Zwraca całą odpowiedź (włącznie z polem response).
   
 Response:  
 ```JSON
-{"id": 2138420, "taskId": 1, "userId": 1, "response":"fhshjjsdkjfdsnjfnj fssnfknsndkfnskfsd sfnsnf", "approved":false, "checked": false}
+{"id": 2138420, "taskId": 1, "userId": 1, "response":"fhshjjsdkjfdsnjfnj fssnfknsndkfnskfsd sfnsnf", "approved":false, "checked": false, "score":0}
 ```
   
 Wyjątki:  
@@ -520,18 +528,20 @@ Wyjątki:
 ## Zmienianie odpowiedzi
     [GM] PATCH /answers/{id}
 Opis:  
-Zmieniamy parametry answer, czyli status approved i checked.  
+Zmieniamy parametry answer, czyli status approved, checked oraz score.
   
 Request (example 1):  
 ```JSON
 { "approved":true,
-"checked": true}
+"checked": true,
+"score": 5}
 ```
 
 Request (example 2):  
 ```JSON
 { "approved":false,
-"checked": true}
+"checked": true,
+"score":0}
 ```
   
 Wyjątki:  
@@ -563,6 +573,9 @@ Response:
 ]
 ```
 
+Wyjątki:
+* W przypadku, gdy gra nie istnieje: 400 Bad Request
+
 ## Statystyka zadań
   GET /stat/tasks?gameId=1
 Opis: Zwraca listę zadań w danej grze z wyliczonymi statystkami. 
@@ -577,8 +590,16 @@ Response:
     "averageScore": 5.43,
     "teamsAttempted": 3,
     "teamsApproved": 2,
+    "averageSolvingTime": 1024,
   }
 ]
-
 ```
+
+Uwaga: averageSolvingTime - średni czas (po drużynach, które wykonały zadanie) od kiedy zadanie stało się dostępne do zatwierdzenia, jednostka: sekunda.
+
+
+Wyjątki:
+* W przypadku, gdy gra nie istnieje: 400 Bad Request
+
+
 
