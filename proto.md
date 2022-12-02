@@ -543,7 +543,7 @@ Wyjątki:
 
 ## Wysłanie nowej wiadomości
     [GM] POST /messages
-Opis: Tworzy nową wiadomość - automatycznie zapisywany jest timestamp. Czynność może zostać wykonana tylko przez GMa danej gry. Należy zagwarantować by przypisywane `id` były rosnące, ponieważ jest wykorzystywane do filtrowania nowych wiadomości w zapytaniu GET.
+Opis: Tworzy nową wiadomość. Czynność może zostać wykonana tylko przez GMa danej gry. Należy zagwarantować by przypisywane `id` były rosnące, ponieważ jest wykorzystywane do filtrowania nowych wiadomości w zapytaniu GET.
 
 Request:
 ```JSON
@@ -556,7 +556,7 @@ Request:
 ## Sprawdzanie wiadomości
     GET /messages?gameId=1
 Opis: 
-Zwraca listę wszystkich wiadomości wysłanych w danej grze. Timestampy podawane w czasie uniksowym. 
+Zwraca listę wszystkich wiadomości wysłanych w danej grze. Timestampy podawane w ISO8601.
 
 Response:
 ```JSON
@@ -564,15 +564,18 @@ Response:
     {
         "id": 124,
         "content": "Powodzenia!",
-        "timestamp": 1669888652,
+        "timestamp": "1997-07-16T19:20:30.45+01:00",
     },
     {
         "id": 325,
         "content": "Zaraz kończymy. Pośpieszcie się z 5 zadaniem",
-        "timestamp": 1669888952,
+        "timestamp": "1997-07-16T19:20:30.45+01:00",
     }
 ]
 ```
+
+Wyjątki:
+* W przypadku, gdy gra nie istnieje: 400 Bad Request
 
     GET /messages?gameId=1?newerThan=124
 Opis: 
@@ -584,7 +587,10 @@ Response:
     {
         "id": 325,
         "content": "Zaraz kończymy. Pośpieszcie się z 5 zadaniem",
-        "timestamp": 1669888952,
+        "timestamp": "1997-07-16T19:20:30.45+01:00",
     }
 ]
 ```
+
+Wyjątki:
+* W przypadku, gdy gra nie istnieje: 400 Bad Request
