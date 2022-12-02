@@ -539,3 +539,58 @@ Wyjątki:
 * W przypadku użytkownika niebędącego GM'em danej gry/użytkownika niebędącego autorem odpowiedzi: 403 Forbidden
 * W przypadku innego błędu: 400 Bad Request
 
+# Wiadomości broadcast od GMa do graczy
+
+## Wysłanie nowej wiadomości
+    [GM] POST /messages
+Opis: Tworzy nową wiadomość. Czynność może zostać wykonana tylko przez GMa danej gry. Należy zagwarantować by przypisywane `id` były rosnące, ponieważ jest wykorzystywane do filtrowania nowych wiadomości w zapytaniu GET.
+
+Request:
+```JSON
+{
+    "gameId": 1,
+    "content": "Powodzenia misiaczki!"
+}
+```
+
+## Sprawdzanie wiadomości
+    GET /messages?gameId=1
+Opis: 
+Zwraca listę wszystkich wiadomości wysłanych w danej grze. Timestampy podawane w ISO8601.
+
+Response:
+```JSON
+[
+    {
+        "id": 124,
+        "content": "Powodzenia!",
+        "timestamp": "1997-07-16T19:20:30.45+01:00",
+    },
+    {
+        "id": 325,
+        "content": "Zaraz kończymy. Pośpieszcie się z 5 zadaniem",
+        "timestamp": "1997-07-16T19:20:30.45+01:00",
+    }
+]
+```
+
+Wyjątki:
+* W przypadku, gdy gra nie istnieje: 400 Bad Request
+
+    GET /messages?gameId=1?newerThan=124
+Opis: 
+Zwraca listę wszystkich wiadomości wysłanych w danej grze, których id jest większy niż pole `newerThan`.
+
+Response:
+```JSON
+[
+    {
+        "id": 325,
+        "content": "Zaraz kończymy. Pośpieszcie się z 5 zadaniem",
+        "timestamp": "1997-07-16T19:20:30.45+01:00",
+    }
+]
+```
+
+Wyjątki:
+* W przypadku, gdy gra nie istnieje: 400 Bad Request
