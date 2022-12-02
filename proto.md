@@ -1,4 +1,4 @@
-# Wersja protokołu: 1.0.7 (01-12-2022)
+# Wersja protokołu: 1.0.7a (01-12-2022)
 
 # Założenia:
 * Wszystkie id są globalnie unikalne.
@@ -589,8 +589,8 @@ Wyjątki:
 * W przypadku, gdy gra nie istnieje: 400 Bad Request
 
     GET /messages?gameId=1?newerThan=124
-Opis: 
-Zwraca listę wszystkich wiadomości wysłanych w danej grze, których id jest większy niż pole `newerThan`.
+
+Opis: Zwraca listę wszystkich wiadomości wysłanych w danej grze, których id jest większy niż pole `newerThan`.
 
 Response:
 ```JSON
