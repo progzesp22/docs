@@ -338,7 +338,8 @@ Response:
         "gameId": 1,
         "type": "TEXT",
         "prerequisiteTasks":[],
-        "maxScore": 12
+        "maxScore": 12,
+        "correct_answer": null,
     },
     {
         "id": 2,
@@ -347,6 +348,7 @@ Response:
         "gameId": 1,
         "type": "PHOTO",
         "prerequisiteTasks":[],
+        "correct_answer": null,
         "maxScore": 12
     },
     {
@@ -356,7 +358,8 @@ Response:
         "gameId": 1,
         "type": "QR_CODE",
         "prerequisiteTasks":[],
-        "maxScore": 12
+        "maxScore": 12,
+        "correct_answer": "1234567" 
     }
 ]
 ```
@@ -369,7 +372,7 @@ Wyjątki:
   
 ## Tworzenie zadań
     POST /tasks
-Dodaje taska.  
+Dodaje taska. Pole `correct_answer` jest domyślnie inicjalizowane jako null, jest wykorzystywane tylko przy sprawdzaniu kodów QR.
   
 Request:  
 ```JSON
@@ -381,6 +384,22 @@ Request:
     "prerequisiteTasks":[],
     "maxScore": 12
 }
+
+```
+
+  
+```JSON
+{
+    "id": 3,
+    "name": "Example Task 3",
+    "description": "Example description 3",
+    "gameId": 1,
+    "type": "QR_CODE",
+    "prerequisiteTasks":[],
+    "maxScore": 12,
+    "correct_answer": "1234567" 
+}
+
 ```
   
 Wyjątki:  
