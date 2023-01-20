@@ -15,7 +15,7 @@ Loguje użytkownika o danym loginie i haśle, zwraca mu session token.
 Request:
 ```JSON
 {
-    "login": "misos",
+    "username": "misos",
     "password": "krowa101"
 }
 ```
@@ -39,7 +39,7 @@ Rejestruje użytkownika o danym loginie i haśle (na razie bez autentyfikacji - 
 Request:
 ```JSON
 {
-    "login": "misos2",
+    "username": "misos2",
     "password": "1234"
 }
 ```
