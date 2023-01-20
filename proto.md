@@ -1,4 +1,4 @@
-# Wersja protokołu: 1.0.7a (01-12-2022)
+# Wersja protokołu: 1.0.8 (20-01-2023)
 
 # Założenia:
 * Wszystkie id są globalnie unikalne.
